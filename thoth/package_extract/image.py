@@ -149,7 +149,7 @@ def download_image(image_name: str, dir_path: str, timeout: int = None, registry
     if registry_credentials:
         cmd += '--src-creds={} '.format(quote(registry_credentials))
 
-    cmd += 'docker://{} dir:/{}'.format(quote(image_name), quote(dir_path))
+    cmd += '{} dir:/{}'.format(quote("docker://" + image_name), quote(dir_path))
     stdout = run_command(cmd, timeout=timeout).stdout
     _LOGGER.debug("skopeo stdout: %s", stdout)
 
